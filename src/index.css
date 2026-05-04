@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-loading: loading 4s ease-out forwards;
+}
+
 @keyframes loading {
   0% {
     width: 0;
