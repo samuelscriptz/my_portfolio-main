@@ -12,16 +12,15 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the 'public' directory
+// Serve static files from 'dist' (Vite build) and 'public' (assets)
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // API Routes
-// Import handlers from api folder
 const contactHandler = require('./api/contact');
 const helloHandler = require('./api/hello');
 const messagesHandler = require('./api/messages');
 
-// Helper to wrap Vercel-style handlers for Express
 const vercelToExpress = (handler) => {
     return async (req, res) => {
         try {
@@ -37,9 +36,12 @@ app.post('/api/contact', vercelToExpress(contactHandler));
 app.get('/api/hello', vercelToExpress(helloHandler));
 app.get('/api/messages', vercelToExpress(messagesHandler));
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
+// Handle client-side routing: serve index.html for all non-API routes
+app.get('*', (req, res) => {
+    // Try dist/index.html first (production), then root index.html (fallback)
+    const indexPath = path.join(__dirname, 'dist', 'index.html');
+    res.sendFile(indexPath);
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
