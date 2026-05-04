@@ -20,27 +20,9 @@ const App = () => {
       }
     };
 
-    if (video) {
-      if (video.readyState >= 3) {
-        // Video is already loaded enough to play
-        finishLoading();
-      } else {
-        // Wait for the video to load
-        video.addEventListener('canplaythrough', finishLoading);
-        video.addEventListener('loadeddata', finishLoading);
-        video.addEventListener('error', finishLoading); // Fallback on error
-
-        return () => {
-          video.removeEventListener('canplaythrough', finishLoading);
-          video.removeEventListener('loadeddata', finishLoading);
-          video.removeEventListener('error', finishLoading);
-        };
-      }
-    } else {
-      // Fallback if video isn't found
-      const timer = setTimeout(finishLoading, 4000);
-      return () => clearTimeout(timer);
-    }
+    // Enforce a 4-second wait time to ensure the loading animation is visible
+    const timer = setTimeout(finishLoading, 4000);
+    return () => clearTimeout(timer);
   }, []);
 
   if (isLoading) {

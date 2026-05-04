@@ -7,7 +7,7 @@ const LoaderProgressiveBar: React.FC = () => {
       <div className="relative w-[400px]">
         {/* Character (Zoro) running on top */}
         <div className="absolute -top-[60px] left-0 w-full h-[60px] pointer-events-none">
-          <div className="absolute bottom-0 left-0 animate-[loading_4s_ease-out_infinite] flex justify-end" style={{ width: '0%' }}>
+          <div className="absolute bottom-0 left-0 animate-[loading_4s_ease-out_forwards] flex justify-end" style={{ width: '0%' }}>
              <img 
               src="/zoro.png" 
               alt="Running Character" 
@@ -20,8 +20,8 @@ const LoaderProgressiveBar: React.FC = () => {
         <div className="flex items-center box-border p-[5px] w-full h-[30px] bg-[#212121] shadow-[inset_-2px_2px_4px_#0c0c0c] rounded-[15px]">
           {/* Loading bar */}
           <div className="relative flex justify-center flex-col w-0 h-[20px] overflow-hidden rounded-[10px]
-            bg-gradient-to-t from-[rgba(222,74,15,1)] to-[rgba(249,199,79,1)]
-            animate-[loading_4s_ease-out_infinite]">
+            bg-gradient-to-t from-[#008c75] to-[#00ffd5]
+            animate-[loading_4s_ease-out_forwards]">
 
             {/* White bars overlay */}
             <div className="absolute flex items-center gap-[18px]">
