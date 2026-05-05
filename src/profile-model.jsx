@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import TiltedCard from './TiltedCard';
+import TiltedCard from './components/TiltedCard';
 
 const container = document.getElementById('profile-model-container');
 if (container) {
