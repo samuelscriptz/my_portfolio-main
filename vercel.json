@@ -2,15 +2,22 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1.js"
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     },
-    { "handle": "filesystem" },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/profile",
+      "destination": "/profile.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
